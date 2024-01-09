@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class WaterGun : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform spawnPosition;
+    [SerializeField] private Transform canon;
+
+    [Header("Parameters")]
+    [SerializeField] private float range = 10f;
+
+
+    //temp
+    [SerializeField] private Transform enemy;
+
+    private void Update()
     {
-        
+        if(Input.GetMouseButtonDown(0))
+        {
+            Shoot();
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Shoot()
     {
-        
+        GameObject bullet = Instantiate(bulletPrefab);
+        bullet.transform.position = spawnPosition.position;
+        bullet.GetComponent<WaterGunBullet>().SetDestination(enemy.position);
     }
 }
