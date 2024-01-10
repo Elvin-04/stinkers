@@ -5,18 +5,18 @@ using UnityEngine;
 public class WaterGunBullet : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
-    private Vector3 destination;
+    private Transform destination;
 
     private void FixedUpdate()
     {
         if (destination != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, destination.position, speed * Time.deltaTime);
         }
     }
 
 
-    public void SetDestination(Vector3 position)
+    public void SetDestination(Transform position)
     {
         destination = position;
     }
