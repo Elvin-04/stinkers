@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2654665646558298550}
   - component: {fileID: 2921150649854113229}
   - component: {fileID: 2134631563477309932}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GreenStinker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
