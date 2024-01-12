@@ -34,7 +34,15 @@ public class StenchOfSchool : MonoBehaviour
 
     public void UpdateStenchOfSchool(float add)
     {
-        stenchOfSchool += add;
+        if(stenchOfSchool + add > 100)
+        {
+            stenchOfSchool = 100;
+        }
+        else
+        {
+            stenchOfSchool += add;
+        }
+        
         foreach (var col in stench)
         {
             col.startColor = gradient.Evaluate(stenchOfSchool / 100);

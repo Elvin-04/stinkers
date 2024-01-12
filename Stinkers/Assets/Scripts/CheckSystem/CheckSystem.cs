@@ -30,7 +30,7 @@ public class CheckSystem : MonoBehaviour
         washCoinsManager.AddWashCoins(WashCoinsWon(stinker.GetComponent<Stinker>()));
         if(stenchOfSchool.GetStenchOfSchool() >= 100)
         {
-            print("u louzeuh");
+            GameManager.instance.EndLevel(false, (int)stenchOfSchool.GetStenchOfSchool());
         }
         stinker.GetComponent<Stinker>().SetWayPoints(wayToGoToHisPlace);
         //stinkersInSchool.Add(stinker);
