@@ -24,9 +24,6 @@ public class Stinker : MonoBehaviour
 
     void Start()
     {
-        //transform.position =wayPoints[wayPointIndex].transform.position;
-        //wayPointIndex++;
-
         var colors = new GradientColorKey[4];
         colors[0] = new GradientColorKey(stinkersColor[0], 0.05f);
         colors[1] = new GradientColorKey(stinkersColor[1], 0.1f);
@@ -51,8 +48,6 @@ public class Stinker : MonoBehaviour
             {
                 wayPointIndex++;
             }
-            Debug.Log(distance);
-            print("nike");
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -60,15 +55,13 @@ public class Stinker : MonoBehaviour
             UpdateStinkPercentage(1);
         }
     }
-    void UpdateStinkPercentage(int reduce)
+    private void UpdateStinkPercentage(int reduce)
     {
         stinkPercentage -= reduce;
-        Debug.Log(stinkPercentage / 100);
-        Debug.Log(gradient.Evaluate(stinkPercentage / 100));
         meshRenderer.material.SetColor("_Color", gradient.Evaluate(stinkPercentage/100));
     }
 
-    public void setWayPoints(List<GameObject> wayPointsList)
+    public void SetWayPoints(List<GameObject> wayPointsList)
     {
         wayPoints =wayPointsList;
     }

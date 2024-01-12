@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6418148517695911469}
   - component: {fileID: 959587592472363559}
   - component: {fileID: 1960898706017769518}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RedStinker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

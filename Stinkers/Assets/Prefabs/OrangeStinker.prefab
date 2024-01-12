@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2363643650713796462}
   - component: {fileID: 3915027103132942204}
   - component: {fileID: 1337475962555230781}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: OrangeStinker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

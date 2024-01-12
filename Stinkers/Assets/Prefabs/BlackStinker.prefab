@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6334409559934476002}
   - component: {fileID: 3392832039831210192}
   - component: {fileID: 3564146685773324484}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BlackStinker
   m_TagString: Enemy
   m_Icon: {fileID: 0}
