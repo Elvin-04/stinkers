@@ -10,6 +10,7 @@ public class ShowerDetectionCollider : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
+            shower.ennemiesInRange.Add(collision.transform);
             enemyInRange++;
             shower.enemyInRange = true;
         }
@@ -19,6 +20,7 @@ public class ShowerDetectionCollider : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
+            shower.ennemiesInRange.Remove(collision.transform);
             enemyInRange--;
             if (enemyInRange == 0)
                 shower.enemyInRange = false;

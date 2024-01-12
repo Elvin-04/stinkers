@@ -15,6 +15,7 @@ public class WaterGun : MonoBehaviour
     [Header("Parameters")]
     public float range = 5f;
     public float firerate = 3f;
+    public float damages = 0.8f;
     [SerializeField] private int maxMunition = 30;
     [SerializeField] private float timeToReload;
     [SerializeField] private LayerMask layerDetection;
@@ -51,15 +52,13 @@ public class WaterGun : MonoBehaviour
         
         if (hitColliders.Length > 0)
         {
-            enemy = hitColliders[0].transform;
-            if(hitColliders.Length > 1)
+            foreach (Collider collider in hitColliders)
             {
-                foreach (Collider collider in hitColliders)
+                if (enemy == null && !collider.transform.GetComponent<Stinker>().IsClean()
+                    || enemy != null && Vector3.Distance(collider.transform.position, GameManager.instance.endLevel.position) <= Vector3.Distance(enemy.position, GameManager.instance.endLevel.position)
+                    && !collider.transform.GetComponent<Stinker>().IsClean())
                 {
-                    if(Vector3.Distance(collider.transform.position, GameManager.instance.endLevel.position) <= Vector3.Distance(enemy.position, GameManager.instance.endLevel.position))
-                    {
-                        enemy = collider.transform;
-                    }
+                    enemy = collider.transform;
                 }
             }
         }
@@ -75,11 +74,16 @@ public class WaterGun : MonoBehaviour
             var targetRotation = Quaternion.LookRotation(enemy.transform.position - canon.transform.position);
             canon.transform.rotation = Quaternion.Slerp(canon.transform.rotation, targetRotation, 10f * Time.deltaTime);
 
-            if(Vector3.Distance(enemy.transform.position, transform.position) >= range)
+            if(Vector3.Distance(enemy.transform.position, transform.position) >= range || enemy.GetComponent<Stinker>().IsClean())
             {
                 enemy = null;
             }
         }
+    }
+
+    public void SetEnemy(Transform newEnemy)
+    {
+        enemy = newEnemy;
     }
 
     private void Shoot()
@@ -87,6 +91,8 @@ public class WaterGun : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab);
         bullet.transform.position = spawnPosition.position;
         bullet.GetComponent<WaterGunBullet>().SetDestination(enemy);
+        bullet.GetComponent<WaterGunBullet>().gun = this;
+
         actMunition--;
         bulletText.text = actMunition.ToString();
         if(actMunition <= 0)
@@ -107,7 +113,7 @@ public class WaterGun : MonoBehaviour
     {
         firerate += 1;
         maxMunition += 5;
-        //increase damages
+        damages += 0.5f;
     }
 
     private void ReloadingCheck()

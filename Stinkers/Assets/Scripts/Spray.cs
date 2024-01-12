@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Xml.Schema;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
@@ -17,10 +18,15 @@ public class Spray : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float sprayTime = 20f;
     [SerializeField] private float reloadTime = 3f;
+    [SerializeField] private float damages = 0.1f;
+    [SerializeField] private float timeBetweenEachshootScript = 0.15f;
 
     private float currentSprayTime = 0.0f;
     private float currentReloadTime = 0.0f;
+    private float currentShootTimer = 0.0f;
     private bool isReloading = false;
+
+    public List<Transform> ennemiesInRange;
 
     private void Start()
     {
@@ -53,36 +59,46 @@ public class Spray : MonoBehaviour
         }
 
 
-        if (particles != null)
+        if (enemyInRange && !isReloading)
         {
-            if (enemyInRange && !isReloading)
+            if (currentSprayTime < sprayTime && !isReloading)
             {
-                if(currentSprayTime < sprayTime && !isReloading)
+                UpdateShooting();
+                if(currentShootTimer < timeBetweenEachshootScript)
                 {
-                    particles.Play();
-                    currentSprayTime += Time.deltaTime;
-                    sprayBar.fillAmount = 1f - currentSprayTime / sprayTime;
+                    currentShootTimer += Time.deltaTime;
                 }
                 else
                 {
-                    reloadButton.SetActive(true);
-                    sprayBar.transform.parent.gameObject.SetActive(false);
-                    particles.Stop();
+                    currentShootTimer = 0.0f;
+                    foreach (Transform enemy in ennemiesInRange)
+                    {
+                        enemy.GetComponent<Stinker>().UpdateStinkPercentage(damages);
+                    }
                 }
             }
             else
             {
+                currentShootTimer = 0.0f;
+                reloadButton.SetActive(true);
+                sprayBar.transform.parent.gameObject.SetActive(false);
                 particles.Stop();
             }
         }
-        
-
-        if(Input.GetKeyDown(KeyCode.V))
+        else
         {
-            Reload();
+            particles.Stop();
         }
 
     }
+
+    private void UpdateShooting()
+    {
+        particles.Play();
+        currentSprayTime += Time.deltaTime;
+        sprayBar.fillAmount = 1f - currentSprayTime / sprayTime;
+    }
+
 
     public void Reload()
     { 

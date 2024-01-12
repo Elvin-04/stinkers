@@ -9970,7 +9970,10 @@ MonoBehaviour:
   reloadImage: {fileID: 2560499124196968788}
   showerDuration: 2
   showerReload: 10
+  damages: 3.5
+  timeBetweenEachshootScript: 0.05
   enemyInRange: 0
+  ennemiesInRange: []
 --- !u!1 &8503303616405873801
 GameObject:
   m_ObjectHideFlags: 0

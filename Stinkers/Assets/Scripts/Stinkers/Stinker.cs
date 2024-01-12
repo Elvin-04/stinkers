@@ -50,12 +50,17 @@ public class Stinker : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            UpdateStinkPercentage(1);
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    UpdateStinkPercentage(1);
+        //}
     }
-    private void UpdateStinkPercentage(float reduce)
+
+    public bool IsClean()
+    {
+        return stinkPercentage <= 0;
+    }
+    public void UpdateStinkPercentage(float reduce)
     {
         stinkPercentage -= reduce;
         meshRenderer.material.SetColor("_Color", gradient.Evaluate(stinkPercentage/100));

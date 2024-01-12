@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaterGunBullet : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     private Transform destination;
+    public WaterGun gun;
 
     private void FixedUpdate()
     {
@@ -15,9 +14,21 @@ public class WaterGunBullet : MonoBehaviour
         }
     }
 
-
     public void SetDestination(Transform position)
     {
         destination = position;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Enemy")
+        {
+            other.transform.GetComponent<Stinker>().UpdateStinkPercentage(gun.damages);
+            if(other.transform.GetComponent<Stinker>().IsClean())
+            {
+                gun.SetEnemy(null);
+            }
+            Destroy(this.gameObject);
+        }
     }
 }

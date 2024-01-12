@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 3
   stinkPercentage: 20
-  speed: 0.6
+  speed: 3
   maxValue: 20
   wayPoints: []
   wayPointIndex: 0

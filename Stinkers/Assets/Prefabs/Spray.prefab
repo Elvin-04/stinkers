@@ -633,6 +633,9 @@ MonoBehaviour:
   reloadButton: {fileID: 8538116825923673023}
   sprayTime: 10
   reloadTime: 3
+  damages: 1
+  timeBetweenEachshootScript: 0.15
+  ennemiesInRange: []
 --- !u!136 &8139424648836393053
 CapsuleCollider:
   m_ObjectHideFlags: 0
