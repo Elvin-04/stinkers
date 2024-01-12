@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - WayTile
+  - Bullet
   layers:
   - Default
   - TransparentFX

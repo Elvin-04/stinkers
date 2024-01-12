@@ -15,6 +15,7 @@ public class WaterGun : MonoBehaviour
     [Header("Parameters")]
     public float range = 5f;
     public float firerate = 3f;
+    public float damages = 0.8f;
     [SerializeField] private int maxMunition = 30;
     [SerializeField] private float timeToReload;
     [SerializeField] private LayerMask layerDetection;
@@ -87,6 +88,7 @@ public class WaterGun : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab);
         bullet.transform.position = spawnPosition.position;
         bullet.GetComponent<WaterGunBullet>().SetDestination(enemy);
+        bullet.GetComponent<WaterGunBullet>().gun = this;
         actMunition--;
         bulletText.text = actMunition.ToString();
         if(actMunition <= 0)
