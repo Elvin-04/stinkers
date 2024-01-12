@@ -1,18 +1,22 @@
+using TMPro;
 using UnityEngine;
 
 public class WashCoinsManager : MonoBehaviour
 {
     private int washCoins;
 
+    public TextMeshProUGUI washCoinsText;
+
     private void Start()
     {
-        print("WC = " + washCoins);
+        washCoins = 0;
+        UpdateText();
     }
 
     public void AddWashCoins(int washCoinsToAdd)
     {
         washCoins += washCoinsToAdd;
-        print("WC = " + washCoins);
+        UpdateText();
     }
 
     public void RemoveWashCoins(int washCoinsToRemove)
@@ -25,7 +29,12 @@ public class WashCoinsManager : MonoBehaviour
         {
             washCoins = 0;
         }
-        print("WC = " + washCoins);
+        UpdateText();
+    }
+
+    public void UpdateText()
+    {
+        washCoinsText.text = "Wash Coins : " + washCoins;
     }
 
     public int GetWashCoins() {  return washCoins; }

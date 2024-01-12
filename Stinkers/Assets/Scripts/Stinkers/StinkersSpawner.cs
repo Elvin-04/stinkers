@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StinkersSpawner : MonoBehaviour
@@ -22,6 +23,7 @@ public class StinkersSpawner : MonoBehaviour
     private List<GameObject> way2;
     private List<List<GameObject>> waysList;
 
+    public TextMeshProUGUI waveCountText;
 
     private int levelNumber;
     private int waveNumber;
@@ -63,6 +65,7 @@ public class StinkersSpawner : MonoBehaviour
 
     void Start()
     {
+        UpdateText();
         isNextWave = false;
         isSkipWave = false;
         stinkersPrefabs = new List<GameObject>() { greenStinkerPrefab, yellowStinkerPrefab, orangeStinkerPrefab, redStinkerPrefab, blackStinkerPrefab };
@@ -76,6 +79,7 @@ public class StinkersSpawner : MonoBehaviour
         {
             isNextWave = false;
             isSkipWave = false;
+            UpdateText();
             StartSpawnWave();
         }
     }
@@ -133,5 +137,10 @@ public class StinkersSpawner : MonoBehaviour
     {
         isSkipWave = true;
         //addWC((int)(levels[levelNumber].waves[waveNumber].startTimer - (Time.time - waveTimer))+1);
+    }
+
+    public void UpdateText()
+    {
+        waveCountText.text = "Wave : " + (waveNumber+1) + "/" + levels[levelNumber].waves.Count;
     }
 }

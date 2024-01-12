@@ -65,7 +65,14 @@ public class Stinker : MonoBehaviour
     }
     public void UpdateStinkPercentage(float reduce)
     {
-        stinkPercentage -= reduce;
+        if (stinkPercentage - reduce < 0)
+        {
+            stinkPercentage = 0;
+        }
+        else
+        {
+            stinkPercentage -= reduce;
+        }
         stink.startColor = gradient.Evaluate(stinkPercentage / 100);
     }
 
