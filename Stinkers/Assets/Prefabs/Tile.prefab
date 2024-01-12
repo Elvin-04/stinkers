@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6163535573825376100}
   - component: {fileID: 4179317763964165733}
   - component: {fileID: 1995436392175790510}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2427496443139817322}
   - component: {fileID: -682196386188667668}
   - component: {fileID: 8405328943791236392}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visual: {fileID: 6163535573825376100}
+  isEmpty: 0
 --- !u!95 &8405328943791236392
 Animator:
   serializedVersion: 5
