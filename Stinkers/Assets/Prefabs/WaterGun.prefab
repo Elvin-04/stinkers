@@ -58,7 +58,7 @@ MonoBehaviour:
   timeToReload: 3
   layerDetection:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
 --- !u!1 &4864912239640092856
 GameObject:
   m_ObjectHideFlags: 0

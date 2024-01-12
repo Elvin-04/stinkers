@@ -55,7 +55,7 @@ public class Stinker : MonoBehaviour
             UpdateStinkPercentage(1);
         }
     }
-    private void UpdateStinkPercentage(int reduce)
+    private void UpdateStinkPercentage(float reduce)
     {
         stinkPercentage -= reduce;
         meshRenderer.material.SetColor("_Color", gradient.Evaluate(stinkPercentage/100));
