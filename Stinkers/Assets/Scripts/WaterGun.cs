@@ -112,9 +112,14 @@ public class WaterGun : MonoBehaviour
 
     public void Upgrade()
     {
-        firerate += 1;
-        maxMunition += 5;
-        damages += 0.5f;
+        if(GetComponent<Turret>().upgradePrice >= WashCoinsManager.instance.GetWashCoins())
+        {
+            firerate += 1;
+            maxMunition += 5;
+            damages += 0.5f;
+            WashCoinsManager.instance.RemoveWashCoins((int)GetComponent<Turret>().upgradePrice);
+        }
+        
     }
 
     private void ReloadingCheck()

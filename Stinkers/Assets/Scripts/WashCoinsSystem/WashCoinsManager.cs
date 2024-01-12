@@ -4,6 +4,13 @@ public class WashCoinsManager : MonoBehaviour
 {
     private int washCoins;
 
+    public static WashCoinsManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         print("WC = " + washCoins);
@@ -27,6 +34,7 @@ public class WashCoinsManager : MonoBehaviour
         }
         print("WC = " + washCoins);
     }
+
 
     public int GetWashCoins() {  return washCoins; }
 }

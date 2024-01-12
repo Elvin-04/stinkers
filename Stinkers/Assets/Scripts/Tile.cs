@@ -20,6 +20,8 @@ public class Tile : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    public GameObject GetConnectedTurret() { return connectedTurret; }
+
     public void ChangeSelection(bool _selected)
     {
         selected = _selected;
@@ -28,14 +30,18 @@ public class Tile : MonoBehaviour
 
     public void PlaceTurret(GameObject turret, TurretType type, float angle = 0f)
     {
-        isEmpty = false;
-        connectedTurret = Instantiate(turret, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
-        connectedTurret.transform.eulerAngles = new Vector3(0, angle, 0);
-        connectedTurretType = type;
+        if(WashCoinsManager.instance.GetWashCoins() >= turret.GetComponent<Turret>().buyPrice)
+        {
+            isEmpty = false;
+            connectedTurret = Instantiate(turret, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
+            connectedTurret.transform.eulerAngles = new Vector3(0, angle, 0);
+            connectedTurretType = type;
+        }
     }
 
     public void DeleteTurret()
     {
+        WashCoinsManager.instance.AddWashCoins((int)connectedTurret.GetComponent<Turret>().sellPrice);
         Destroy(connectedTurret);
         isEmpty = true;
         connectedTurretType = TurretType.NONE;

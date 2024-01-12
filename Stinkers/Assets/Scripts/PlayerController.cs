@@ -158,6 +158,7 @@ public class PlayerController : MonoBehaviour
             {
                 upgradeButton.SetActive(false);
             }
+            wheel.GetComponent<Wheel>().SetPrices(tileSelected.GetConnectedTurret().GetComponent<Turret>().sellPrice.ToString(), tileSelected.GetConnectedTurret().GetComponent<Turret>().upgradePrice.ToString());
         }
 
         
