@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class WaterGun : MonoBehaviour
@@ -74,8 +73,12 @@ public class WaterGun : MonoBehaviour
         if(enemy != null)
         {
             var targetRotation = Quaternion.LookRotation(enemy.transform.position - canon.transform.position);
-
             canon.transform.rotation = Quaternion.Slerp(canon.transform.rotation, targetRotation, 10f * Time.deltaTime);
+
+            if(Vector3.Distance(enemy.transform.position, transform.position) >= range)
+            {
+                enemy = null;
+            }
         }
     }
 

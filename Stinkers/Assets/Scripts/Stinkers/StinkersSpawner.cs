@@ -17,15 +17,9 @@ public class StinkersSpawner : MonoBehaviour
     private List<GameObject> stinkersPrefabs ;
 
     [SerializeField]
-    private List<GameObject> greenWay;
+    private List<GameObject> way1;
     [SerializeField]
-    private List<GameObject> yellowWay;
-    [SerializeField]
-    private List<GameObject> orangeWay;
-    [SerializeField]
-    private List<GameObject> redWay;
-    [SerializeField]
-    private List<GameObject> blackWay;
+    private List<GameObject> way2;
     private List<List<GameObject>> waysList;
 
 
@@ -72,7 +66,7 @@ public class StinkersSpawner : MonoBehaviour
         isNextWave = false;
         isSkipWave = false;
         stinkersPrefabs = new List<GameObject>() { greenStinkerPrefab, yellowStinkerPrefab, orangeStinkerPrefab, redStinkerPrefab, blackStinkerPrefab };
-        waysList = new List<List<GameObject>>() { greenWay, yellowWay, orangeWay, redWay, blackWay };
+        waysList = new List<List<GameObject>>() { way1, way2 };
         StartSpawnWave();
     }
 
@@ -81,7 +75,6 @@ public class StinkersSpawner : MonoBehaviour
         print(waveNumber);
         if(Time.time - waveTimer >= levels[levelNumber].waves[waveNumber].startTimer && isNextWave || isSkipWave)
         {
-            print("c bon");
             isNextWave = false;
             isSkipWave = false;
             StartSpawnWave();
@@ -96,11 +89,8 @@ public class StinkersSpawner : MonoBehaviour
         instantiate.GetComponent<Stinker>().SetWayPoints(waysList[way]);
         if (!(levels[levelNumber].waves.Count-1 == waveNumber && levels[levelNumber].waves[levels[levelNumber].waves.Count-1].ways[way].stinkers.Count-1 == levels[levelNumber].waves[waveNumber].ways[way].stinkerNumber))
         {
-            Debug.Log("1er =" + (levels[levelNumber].waves[waveNumber].ways[way].stinkers.Count - 1));
-            Debug.Log("2eme =" + levels[levelNumber].waves[waveNumber].ways[way].stinkerNumber);
             if (levels[levelNumber].waves[waveNumber].ways[way].stinkers.Count - 1 == levels[levelNumber].waves[waveNumber].ways[way].stinkerNumber)
             {
-                print("aboubou");
                 Wave ab = levels[levelNumber].waves[waveNumber];
                 ab.endSpawnWay = levels[levelNumber].waves[waveNumber].endSpawnWay + 1;
                 levels[levelNumber].waves[waveNumber] = ab;
@@ -109,7 +99,6 @@ public class StinkersSpawner : MonoBehaviour
                 levels[levelNumber].waves[waveNumber].ways[way] = a;
                 if (levels[levelNumber].waves[waveNumber].endSpawnWay == levels[levelNumber].waves[waveNumber].ways.Count)
                 {
-                    print("nice");
                     waveTimer = Time.time;
                     Wave abc = levels[levelNumber].waves[waveNumber];
                     abc.endSpawnWay = 0;
