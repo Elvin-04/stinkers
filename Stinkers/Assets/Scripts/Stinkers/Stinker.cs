@@ -5,8 +5,9 @@ public class Stinker : MonoBehaviour
 {
     [SerializeField]
     private int level;
-    [SerializeField]
     private float stinkPercentage;
+    [SerializeField]
+    private float startStinkPercentage;
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -17,13 +18,15 @@ public class Stinker : MonoBehaviour
     [SerializeField]
     private int wayPointIndex = 1;
 
-    public MeshRenderer meshRenderer;
+    public ParticleSystem stink;
 
-    private List<Color> stinkersColor = new List<Color>() { Color.green, Color.yellow, Color.red, Color.black };
+    private List<Color> stinkersColor = new List<Color>() { Color.green, Color.yellow, Color.red, Color.magenta };
     private Gradient gradient = new Gradient();
 
     void Start()
     {
+        stinkPercentage = startStinkPercentage;
+
         var colors = new GradientColorKey[4];
         colors[0] = new GradientColorKey(stinkersColor[0], 0.05f);
         colors[1] = new GradientColorKey(stinkersColor[1], 0.1f);
@@ -35,7 +38,7 @@ public class Stinker : MonoBehaviour
         alphas[1] = new GradientAlphaKey(1.0f, 0.05f);
 
         gradient.SetKeys(colors, alphas);
-        meshRenderer.material.SetColor("_Color", gradient.Evaluate(stinkPercentage / 100));
+        stink.startColor = gradient.Evaluate(stinkPercentage / 100);
     }
 
     void Update()
@@ -58,11 +61,16 @@ public class Stinker : MonoBehaviour
     private void UpdateStinkPercentage(float reduce)
     {
         stinkPercentage -= reduce;
-        meshRenderer.material.SetColor("_Color", gradient.Evaluate(stinkPercentage/100));
+        stink.startColor = gradient.Evaluate(stinkPercentage / 100);
     }
 
     public void SetWayPoints(List<GameObject> wayPointsList)
     {
         wayPoints =wayPointsList;
+        wayPointIndex = 0;
     }
+
+    public float GetStinkPercentage() {  return stinkPercentage; }
+    public float GetStartStinkPercentage() {  return startStinkPercentage; }
+    public float GetMaxValue() {  return maxValue; }
 }
