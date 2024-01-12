@@ -106,6 +106,7 @@ public class WaterGun : MonoBehaviour
         actMunition = maxMunition;
         reloadImage.transform.gameObject.SetActive(false);
         bulletText.transform.gameObject.SetActive(true);
+        bulletText.text = actMunition.ToString();
         reloadImage.fillAmount = 0f;
     }
 
