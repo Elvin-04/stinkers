@@ -72,7 +72,6 @@ public class StinkersSpawner : MonoBehaviour
 
     private void Update()
     {
-        print(waveNumber);
         if(Time.time - waveTimer >= levels[levelNumber].waves[waveNumber].startTimer && isNextWave || isSkipWave)
         {
             isNextWave = false;
