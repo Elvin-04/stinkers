@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3325542849270469577}
   - component: {fileID: 2101160820663332394}
+  - component: {fileID: 6614047406973880931}
   m_Layer: 0
   m_Name: WaterGun
   m_TagString: Untagged
@@ -54,11 +55,27 @@ MonoBehaviour:
   bulletText: {fileID: 4237784868188021855}
   range: 10
   firerate: 3
+  damages: 0.8
   maxMunition: 30
   timeToReload: 3
   layerDetection:
     serializedVersion: 2
     m_Bits: 8
+--- !u!114 &6614047406973880931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2527878783872053927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9acb258c3ddec8428c0252b542983db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyPrice: 100
+  sellPrice: 50
+  upgradePrice: 100
 --- !u!1 &4864912239640092856
 GameObject:
   m_ObjectHideFlags: 0

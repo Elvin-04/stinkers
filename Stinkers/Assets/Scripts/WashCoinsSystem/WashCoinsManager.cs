@@ -6,6 +6,12 @@ public class WashCoinsManager : MonoBehaviour
     private int washCoins;
 
     public TextMeshProUGUI washCoinsText;
+    public static WashCoinsManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -36,6 +42,7 @@ public class WashCoinsManager : MonoBehaviour
     {
         washCoinsText.text = "Wash Coins : " + washCoins;
     }
+
 
     public int GetWashCoins() {  return washCoins; }
 }

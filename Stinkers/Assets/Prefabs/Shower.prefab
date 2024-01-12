@@ -9922,6 +9922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6572413966197578128}
   - component: {fileID: 5023776905534378435}
+  - component: {fileID: -1936823840109031574}
   m_Layer: 0
   m_Name: Shower
   m_TagString: Untagged
@@ -9974,6 +9975,21 @@ MonoBehaviour:
   timeBetweenEachshootScript: 0.05
   enemyInRange: 0
   ennemiesInRange: []
+--- !u!114 &-1936823840109031574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8054340893063105453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9acb258c3ddec8428c0252b542983db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buyPrice: 1000
+  sellPrice: 400
+  upgradePrice: 0
 --- !u!1 &8503303616405873801
 GameObject:
   m_ObjectHideFlags: 0
