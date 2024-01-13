@@ -33,10 +33,10 @@ public class Tile : MonoBehaviour
         if(WashCoinsManager.instance.GetWashCoins() >= turret.GetComponent<Turret>().buyPrice)
         {
             isEmpty = false;
-            WashCoinsManager.instance.RemoveWashCoins((int)connectedTurret.GetComponent<Turret>().buyPrice);
             connectedTurret = Instantiate(turret, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
             connectedTurret.transform.eulerAngles = new Vector3(0, angle, 0);
             connectedTurretType = type;
+            WashCoinsManager.instance.RemoveWashCoins((int)connectedTurret.GetComponent<Turret>().buyPrice);
         }
     }
 
