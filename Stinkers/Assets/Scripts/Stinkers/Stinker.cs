@@ -5,6 +5,7 @@ public class Stinker : MonoBehaviour
 {
     [SerializeField]
     private int level;
+    [SerializeField]
     private float stinkPercentage;
     [SerializeField]
     private float startStinkPercentage;

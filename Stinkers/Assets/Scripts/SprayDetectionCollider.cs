@@ -6,15 +6,11 @@ public class SprayDetectionCollider : MonoBehaviour
 {
     [SerializeField] private Spray spray;
 
-    private int enemyInRange = 0;
-
-
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Enemy")
+        if (collision.tag == "Enemy" && !collision.transform.GetComponent<Stinker>().IsClean())
         {
             spray.ennemiesInRange.Add(collision.transform);
-            enemyInRange++;
             spray.enemyInRange = true;
         }
     }
@@ -24,8 +20,7 @@ public class SprayDetectionCollider : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             spray.ennemiesInRange.Remove(collision.transform);
-            enemyInRange--;
-            if (enemyInRange == 0)
+            if (spray.ennemiesInRange.Count == 0)
                 spray.enemyInRange = false; 
         }
     }
