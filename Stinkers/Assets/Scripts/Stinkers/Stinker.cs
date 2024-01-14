@@ -24,6 +24,10 @@ public class Stinker : MonoBehaviour
     private List<Color> stinkersColor = new List<Color>() { Color.green, Color.yellow, Color.red, Color.magenta };
     private Gradient gradient = new Gradient();
 
+    [Header("Visuals")]
+    [SerializeField] private GameObject man;
+    [SerializeField] private GameObject woman;
+
     void Start()
     {
         stinkPercentage = startStinkPercentage;
@@ -42,10 +46,30 @@ public class Stinker : MonoBehaviour
         stink.startColor = gradient.Evaluate(stinkPercentage / 100);
     }
 
+    public void Setvisual()
+    {
+        int rand = Random.Range(0, 2);
+        if(rand == 0)
+        {
+            man.SetActive(true);
+            woman.SetActive(false);
+        }
+        else
+        {
+            man.SetActive(false);
+            woman.SetActive(true);
+        }
+    }
+
+
     void Update()
     {
         if(!(wayPointIndex == wayPoints.Count - 1 && Vector3.Distance(transform.position, wayPoints[wayPoints.Count - 1].transform.position) <= 0.1))
         {
+            //Rotation
+            var targetRotation = Quaternion.LookRotation(wayPoints[wayPointIndex].transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15f * Time.deltaTime);
+
             Vector3 distance = wayPoints[wayPointIndex].transform.position;
             transform.position = Vector3.MoveTowards(transform.position, distance, speed * Time.deltaTime);
             if (Vector3.Distance(transform.position, distance) <= 0.01 && wayPointIndex < wayPoints.Count - 1)
@@ -53,6 +77,8 @@ public class Stinker : MonoBehaviour
                 wayPointIndex++;
             }
         }
+
+        
 
         //if (Input.GetMouseButtonDown(0))
         //{
