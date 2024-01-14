@@ -75,7 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buyPrice: 100
   sellPrice: 50
-  upgradePrice: 100
+  upgradePrice: 250
 --- !u!1 &4864912239640092856
 GameObject:
   m_ObjectHideFlags: 0

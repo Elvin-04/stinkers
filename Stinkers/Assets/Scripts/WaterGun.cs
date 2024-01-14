@@ -116,7 +116,6 @@ public class WaterGun : MonoBehaviour
         {
             firerate += 1;
             maxMunition += 5;
-            damages += 0.5f;
             WashCoinsManager.instance.RemoveWashCoins((int)GetComponent<Turret>().upgradePrice);
         }
         

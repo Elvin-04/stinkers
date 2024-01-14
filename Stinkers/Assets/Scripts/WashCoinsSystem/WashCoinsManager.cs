@@ -15,7 +15,7 @@ public class WashCoinsManager : MonoBehaviour
 
     private void Start()
     {
-        washCoins = 500;
+        washCoins = 200;
         UpdateText();
     }
 

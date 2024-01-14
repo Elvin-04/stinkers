@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using System.Xml.Schema;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Spray : MonoBehaviour

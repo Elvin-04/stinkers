@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StenchOfSchool : MonoBehaviour
 {
     private float stenchOfSchool;
+
+    public TextMeshProUGUI stenchOfSchoolText;
 
     public List<ParticleSystem> stench;
 
@@ -47,6 +50,12 @@ public class StenchOfSchool : MonoBehaviour
         {
             col.startColor = gradient.Evaluate(stenchOfSchool / 100);
         }
+        UpdateText();
+    }
+
+    public void UpdateText()
+    {
+        stenchOfSchoolText.text = "Stench of School : " + (int)stenchOfSchool + "%";
     }
 
     public float GetStenchOfSchool() {  return stenchOfSchool; }

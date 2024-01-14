@@ -152,7 +152,7 @@ MonoBehaviour:
   level: 4
   stinkPercentage: 0
   startStinkPercentage: 30
-  speed: 3
+  speed: 2.5
   maxValue: 30
   wayPoints: []
   wayPointIndex: 0

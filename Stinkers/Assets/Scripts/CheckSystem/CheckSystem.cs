@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CheckSystem : MonoBehaviour
@@ -53,8 +54,7 @@ public class CheckSystem : MonoBehaviour
 
     public int WashCoinsWon(Stinker stinker)
     {
-        int result = (int)(stinker.GetMaxValue() * (stinker.GetStartStinkPercentage() - stinker.GetStinkPercentage()) / (stinker.GetStartStinkPercentage()));
-        print("WC won = " + result);
+        int result = (int)(stinker.GetMaxValue() * (stinker.GetStartStinkPercentage() - stinker.GetStinkPercentage()) / (stinker.GetStartStinkPercentage())+5);
         return result;
     }
 

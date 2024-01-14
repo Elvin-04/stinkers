@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
 
 public class SprayDetectionCollider : MonoBehaviour
