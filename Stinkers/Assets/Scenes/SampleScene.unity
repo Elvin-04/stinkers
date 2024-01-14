@@ -20396,6 +20396,7 @@ MonoBehaviour:
   - {fileID: 326635402}
   - {fileID: 1157165221}
   waveCountText: {fileID: 1886095707}
+  checkSystem: {fileID: 625121051}
   levels:
   - waves:
     - ways:

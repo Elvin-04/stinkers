@@ -32,6 +32,8 @@ public class StinkersSpawner : MonoBehaviour
     private bool isNextWave;
     private bool isSkipWave;
 
+    public CheckSystem checkSystem;
+
     [SerializeField]
     private List <Level> levels;
 
@@ -90,6 +92,7 @@ public class StinkersSpawner : MonoBehaviour
         int stinkerType = levels[levelNumber].waves[waveNumber].ways[way].stinkers[levels[levelNumber].waves[waveNumber].ways[way].stinkerNumber].stinker-1;
         GameObject instantiate = Instantiate(stinkersPrefabs[stinkerType], waysList[way] [0].transform.position, Quaternion.identity);
         instantiate.GetComponent<Stinker>().SetWayPoints(waysList[way]);
+        checkSystem.AddStinkerSpawn(instantiate);
         if (!(levels[levelNumber].waves.Count-1 == waveNumber && levels[levelNumber].waves[levels[levelNumber].waves.Count-1].ways[way].stinkers.Count-1 == levels[levelNumber].waves[waveNumber].ways[way].stinkerNumber))
         {
             if (levels[levelNumber].waves[waveNumber].ways[way].stinkers.Count - 1 == levels[levelNumber].waves[waveNumber].ways[way].stinkerNumber)
@@ -117,6 +120,10 @@ public class StinkersSpawner : MonoBehaviour
                 levels[levelNumber].waves[waveNumber].ways[way] = a;
                 StartSpawnStinker(way);
             }
+        }
+        else
+        {
+            checkSystem.SetEndSpawn();
         }
     }
 

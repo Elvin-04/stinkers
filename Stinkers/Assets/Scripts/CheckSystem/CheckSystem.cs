@@ -15,6 +15,14 @@ public class CheckSystem : MonoBehaviour
     [SerializeField]
     private WashCoinsManager washCoinsManager;
 
+    private bool endSpawn = false;
+    private List<GameObject> stinkersSpawned;
+
+    private void Awake()
+    {
+        stinkersSpawned = new List<GameObject>();
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.tag == "Enemy")
@@ -28,9 +36,15 @@ public class CheckSystem : MonoBehaviour
     {
         stenchOfSchool.UpdateStenchOfSchool(stinker.GetComponent<Stinker>().GetStinkPercentage());
         washCoinsManager.AddWashCoins(WashCoinsWon(stinker.GetComponent<Stinker>()));
-        if(stenchOfSchool.GetStenchOfSchool() >= 100)
+        stinker.GetComponent<Stinker>().UpdateStinkPercentage(stinker.GetComponent<Stinker>().GetStinkPercentage());
+        stinkersSpawned.Remove(stinker);
+        if (stenchOfSchool.GetStenchOfSchool() >= 100)
         {
             GameManager.instance.EndLevel(false, (int)stenchOfSchool.GetStenchOfSchool());
+        }
+        else if (endSpawn && stinkersSpawned.Count == 0)
+        {
+            GameManager.instance.EndLevel(true, (int)stenchOfSchool.GetStenchOfSchool());
         }
         stinker.GetComponent<Stinker>().SetWayPoints(wayToGoToHisPlace);
         //stinkersInSchool.Add(stinker);
@@ -43,4 +57,11 @@ public class CheckSystem : MonoBehaviour
         print("WC won = " + result);
         return result;
     }
+
+    public void AddStinkerSpawn(GameObject stinker)
+    {
+        stinkersSpawned.Add(stinker);
+    }
+
+    public void SetEndSpawn() { endSpawn = true; }
 }
